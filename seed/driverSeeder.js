@@ -1,4 +1,7 @@
 import Driver from "../models/driverModel.js";
+import mongoose from "mongoose";
+
+mongoose.connect("mongodb://localhost:27017/temporaryDB");
 
 // This grid (map) is assumed to be 20 by 20
 // Therefore, maximum values of x and y respectively is 20
@@ -276,3 +279,34 @@ const drivers = [
     carCapacity: 5,
   }),
 ];
+
+let done = 0;
+
+// const destroyData = async () => {
+//   try {
+//     await Driver.deleteMany();
+
+//     console.log("Data destroyed!");
+//     process.exit();
+//   } catch (error) {
+//     console.error(error);
+//     process.exit(1);
+//   }
+// };
+
+function exit() {
+  mongoose.disconnect();
+}
+
+export const seedData = () => {
+  for (let i = 0; i < drivers.length; i++) {
+    drivers[i].save(function (err, result) {
+      done++;
+
+      // Delete this line and the next line
+      // if (done === drivers.length) exit();
+    });
+  }
+
+  console.log("Mock data is seeded.");
+};
