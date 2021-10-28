@@ -1,22 +1,25 @@
 import express from "express";
 import dotenv from "dotenv";
 dotenv.config({ path: "./.env" });
+
 const app = express();
 
 import connectDb from "./utils/connectDb.js";
-import { notFound, errorHandler } from "./middleware/errorMiddleware.js";
 import driverRoutes from "./routes/driverRoutes.js";
 
+// MongoDB database connection
 connectDb();
 
+// To recognize incoming request as JSON object
 app.use(express.json());
 
-app.use("/api/search", driverRoutes);
+// Route(s)
+app.use("/api/search/drivers", driverRoutes);
 
-app.use(notFound);
-app.use(errorHandler);
+// No middleware (such as auth middleware) because this is a public, demo API
 
-const PORT = process.env.PORT || 3000;
+// Port
+const PORT = process.env.PORT || 5000;
 
 app.listen(
   PORT,
