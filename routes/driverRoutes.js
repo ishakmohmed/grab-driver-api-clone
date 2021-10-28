@@ -1,8 +1,8 @@
 import express from "express";
-import { getDrivers } from "../controllers/driverController.js";
+import { getNearestDrivers } from "../controllers/driverController.js";
 
 const router = express.Router();
 
-router.route("/:customerRequestData").post(getDrivers);
+router.route("/:customerRequestData").post(getNearestDrivers);
 
 export default router;

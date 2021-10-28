@@ -16,7 +16,7 @@ import Driver from "../models/driverModel.js";
 //   "customerGuestCount": 2
 // }
 
-export const getDrivers = async (req, res) => {
+export const getNearestDrivers = async (req, res) => {
   return res.json({
     message: "you did it!",
   });
