@@ -20,7 +20,7 @@ seedData();
 // Route(s)
 app.use("/api/search/drivers", driverRoutes);
 
-// No middleware (such as auth middleware) because this is a public, demo API
+// No middleware (such as auth middleware) since this is a simple, public, demo API
 
 // Port
 const PORT = process.env.PORT || 5000;

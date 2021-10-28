@@ -1,9 +1,9 @@
 import mongoose from "mongoose";
 
-// I just assumed minimum and maximum values for data validation, for example, maximum value for carCapacity is set to 15
+// I just assumed minimum and maximum values for data validation, for example, maximum value for carCapacity is set to 8
 // This grid (map) is assumed to be 20 by 20
 // Therefore, maximum values of x and y respectively is 20
-// The maximum value of willDriveCapavity is assumed to be 40 throughout the seed data
+// The maximum value of willDriveDistance is assumed to be 40 throughout the seed data
 // The seed data is available in "./seed/driverSeeder.js" which will be populated automatically without you having to do any extra steps
 
 const driverSchema = new mongoose.Schema({
@@ -41,7 +41,7 @@ const driverSchema = new mongoose.Schema({
   carCapacity: {
     type: Number,
     min: 1,
-    max: 15,
+    max: 8,
     default: 1,
     required: true,
   },

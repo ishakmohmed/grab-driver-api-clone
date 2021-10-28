@@ -1,22 +1,12 @@
 import mongoose from "mongoose";
 
 import Driver from "../models/driverModel.js";
+import calculateDistance from "../utils/calculateDistance.js";
+import findNearestEligibleDriver from "../utils/findNearestEligibleDriver.js";
 
 // @access       Public
 // @description       Get nearest drivers
-// @route         POST /api/search/drivers, here is a sample JSON request you can send to test this route handler:
-// {
-//   "customerName": "Mohmed Ishak",
-//   "customerLocation": {
-//     "x": 2,
-//     "y": 7
-//   },
-//   "customerDestination": {
-//     "x": 7,
-//     "y": 9
-//   },
-//   "customerGuestCount": 2
-// }
+// @route         POST /api/search/drivers
 export const getNearestDrivers = async (req, res) => {
   try {
     // STEP 1: check if user has sent all relevant data, and if no, throw error
@@ -38,30 +28,71 @@ export const getNearestDrivers = async (req, res) => {
           "Please make sure you provide customerName, customerLocation, customerDestination, and customerGuestCount in appropriate JSON format and structure.",
       });
 
-    // STEP 2: find the difference between customer location and destination (I will use a simple maths formula that I learned in primary school)
-    // Formula to find distance between 2 points on a grid/plane where each points have x-axis value and y-axis value:
-    // Distance (a, b) = √(x2 - x1)^2 + (y2 - y1)^2, where square root is applied to the entire formula
-    // If this formula is unclear, please refer this link: https://orion.math.iastate.edu/dept/links/formulas/form2.pdf
-    const distanceBetweenCustomersLocationAndDestination = Math.sqrt(
-      Math.pow(customerLocation.x - customerDestination.x, 2) +
-        Math.pow(customerLocation.y - customerDestination.y, 2)
+    // STEP 2: some data validation (which follows the data validation implemented in driverSchema)
+    // Reason I implemented these validation here is because there is no frontend for this project where validation usually takes place in frontend forms
+    const { x: x1, y: y1 } = customerLocation;
+    const { x: x2, y: y2 } = customerDestination;
+
+    if (
+      x1 > 20 ||
+      x1 < 0 ||
+      x2 > 20 ||
+      x2 < 0 ||
+      y1 > 20 ||
+      y1 < 0 ||
+      y2 > 20 ||
+      y2 < 0
+    )
+      return res.json({
+        error:
+          "Values of x and y (coordinates) are assumed to be from 0 till 20 respectively. Please make sure your x and y (location) values follow the same.",
+      });
+
+    if (customerName.length < 1 || customerName.length > 50)
+      return res.json({
+        error:
+          "Customer name must be at least 1 character and at most 50 characters.",
+      });
+
+    if (customerGuestCount < 1 || customerGuestCount > 7)
+      return res.json({
+        error:
+          "Please enter a value from 2 till 7. This variable means the number of people who wants to get in the car (excluding driver). So, this includes you and your friends/family, not the driver. For this API, it is assumed that the biggest car can fit in 8 people at a time including the driver.",
+      });
+
+    // STEP 2: find the difference between customer location and destination
+    const distanceBetweenCustomersLocationAndDestination = calculateDistance(
+      customerLocation,
+      customerDestination
     );
 
-    // STEP 3: iterate through all driver documents and get drivers whose willDriveDistance is MORE THAN distance between customer's location and destination location, and at the same time whose carCapacity is MORE THAN customerGuestCount
-    const eligibleDriversForCurrentCustomer = await Driver.find({
-      willDriveDistance: {
-        $gte: distanceBetweenCustomersLocationAndDestination,
-      },
-      carCapacity: {
-        $gte: customerGuestCount,
-      },
-    });
+    // STEP 3: iterate through all driver documents and get drivers whose willDriveDistance is MORE THAN/EQUALS TO distance between customer's location and destination location, and at the same time whose carCapacity is MORE THAN/EQUALS TO customerGuestCount
+    const drivers = await Driver.find({});
+    const eligibleDrivers = drivers.filter(
+      (d) =>
+        d.willDriveDistance >= distanceBetweenCustomersLocationAndDestination &&
+        d.carCapacity >= customerGuestCount
+    );
 
-    console.log("man, the new arr is", eligibleDriversForCurrentCustomer);
+    // STEP 4: now iterate through the recent documents and add additional key-value pair, which is the distance to user (because this is important for next step)
+    const eligibleDriversWithDistanceToCustomers = eligibleDrivers.map((d) =>
+      Object.assign(
+        { distanceToUser: calculateDistance(customerLocation, d.location) },
+        d._doc
+      )
+    );
 
-    // STEP 4: this is connected to previous task. When the driver's document passes all the eligible criteria, take that document and at the same time calculate the distance between the driver and the customer right away. This is a little query optimization thing.
+    if (!eligibleDriversWithDistanceToCustomers[0])
+      return res.status(404).json({
+        message: "No driver found. Sorry, please try again later.",
+      });
 
-    // STEP 5: iterate through the recent driver documents you have (after they have passed all criterias) and pick the driver with the lowest distance between that driver and customer, and send it as JSON document to the client
+    // STEP 5: iterate through the recent driver documents you have (after they have passed all criterias and you added additional data like current distance to customers) and pick the driver with the lowest distance between that driver and customer, and send it as JSON document to the client
+    const nearestDriver = findNearestEligibleDriver(
+      eligibleDriversWithDistanceToCustomers
+    );
+
+    return res.status(200).json({ nearestDriver });
   } catch (err) {
     console.error(err);
   }
@@ -69,7 +100,7 @@ export const getNearestDrivers = async (req, res) => {
 
 // @access        Public
 // @description      Get all drivers
-// @route     POST /api/search/drivers, here is a sample JSON request you can send to test this route handler:
+// @route     GET /api/search/drivers
 export async function getAllDrivers(req, res) {
   try {
     const allDrivers = await Driver.find({});

@@ -1,11 +1,9 @@
 import Driver from "../models/driverModel.js";
 import mongoose from "mongoose";
 
-mongoose.connect("mongodb://localhost:27017/temporaryDB");
-
 // This grid (map) is assumed to be 20 by 20
 // Therefore, maximum values of x and y respectively is 20
-// The maximum value of willDriveCapavity is assumed to be 40 throughout this data
+// The maximum value of willDriveDistance is assumed to be 40 throughout this data
 
 const drivers = [
   new Driver({
@@ -14,7 +12,7 @@ const drivers = [
       x: 2,
       y: 4,
     },
-    willDriveCapacity: 10,
+    willDriveDistance: 10,
     carCapacity: 5,
   }),
   new Driver({
@@ -23,7 +21,7 @@ const drivers = [
       x: 6,
       y: 19,
     },
-    willDriveCapacity: 17,
+    willDriveDistance: 17,
     carCapacity: 3,
   }),
   new Driver({
@@ -32,7 +30,7 @@ const drivers = [
       x: 15,
       y: 4,
     },
-    willDriveCapacity: 11,
+    willDriveDistance: 11,
     carCapacity: 3,
   }),
   new Driver({
@@ -41,7 +39,7 @@ const drivers = [
       x: 2,
       y: 17,
     },
-    willDriveCapacity: 40,
+    willDriveDistance: 40,
     carCapacity: 8,
   }),
   new Driver({
@@ -50,7 +48,7 @@ const drivers = [
       x: 7,
       y: 3,
     },
-    willDriveCapacity: 8,
+    willDriveDistance: 8,
     carCapacity: 4,
   }),
   new Driver({
@@ -59,7 +57,7 @@ const drivers = [
       x: 15,
       y: 15,
     },
-    willDriveCapacity: 29,
+    willDriveDistance: 29,
     carCapacity: 2,
   }),
   new Driver({
@@ -68,7 +66,7 @@ const drivers = [
       x: 19,
       y: 17,
     },
-    willDriveCapacity: 36,
+    willDriveDistance: 36,
     carCapacity: 5,
   }),
   new Driver({
@@ -77,7 +75,7 @@ const drivers = [
       x: 6,
       y: 1,
     },
-    willDriveCapacity: 28,
+    willDriveDistance: 28,
     carCapacity: 4,
   }),
   new Driver({
@@ -86,7 +84,7 @@ const drivers = [
       x: 2,
       y: 5,
     },
-    willDriveCapacity: 35,
+    willDriveDistance: 35,
     carCapacity: 6,
   }),
   new Driver({
@@ -95,7 +93,7 @@ const drivers = [
       x: 9,
       y: 19,
     },
-    willDriveCapacity: 10,
+    willDriveDistance: 10,
     carCapacity: 2,
   }),
   new Driver({
@@ -104,7 +102,7 @@ const drivers = [
       x: 5,
       y: 6,
     },
-    willDriveCapacity: 23,
+    willDriveDistance: 23,
     carCapacity: 3,
   }),
   new Driver({
@@ -113,7 +111,7 @@ const drivers = [
       x: 2,
       y: 14,
     },
-    willDriveCapacity: 38,
+    willDriveDistance: 38,
     carCapacity: 6,
   }),
   new Driver({
@@ -122,7 +120,7 @@ const drivers = [
       x: 0,
       y: 0,
     },
-    willDriveCapacity: 40,
+    willDriveDistance: 40,
     carCapacity: 5,
   }),
   new Driver({
@@ -131,7 +129,7 @@ const drivers = [
       x: 5,
       y: 6,
     },
-    willDriveCapacity: 22,
+    willDriveDistance: 22,
     carCapacity: 3,
   }),
   new Driver({
@@ -140,8 +138,8 @@ const drivers = [
       x: 6,
       y: 5,
     },
-    willDriveCapacity: 8,
-    carCapacity: 6,
+    willDriveDistance: 8,
+    carCapacity: 7,
   }),
   new Driver({
     name: "Narendra L.",
@@ -149,7 +147,7 @@ const drivers = [
       x: 16,
       y: 9,
     },
-    willDriveCapacity: 20,
+    willDriveDistance: 20,
     carCapacity: 6,
   }),
   new Driver({
@@ -158,7 +156,7 @@ const drivers = [
       x: 14,
       y: 12,
     },
-    willDriveCapacity: 30,
+    willDriveDistance: 30,
     carCapacity: 2,
   }),
   new Driver({
@@ -167,7 +165,7 @@ const drivers = [
       x: 2,
       y: 8,
     },
-    willDriveCapacity: 40,
+    willDriveDistance: 40,
     carCapacity: 5,
   }),
   new Driver({
@@ -176,7 +174,7 @@ const drivers = [
       x: 6,
       y: 19,
     },
-    willDriveCapacity: 27,
+    willDriveDistance: 27,
     carCapacity: 3,
   }),
   new Driver({
@@ -185,7 +183,7 @@ const drivers = [
       x: 19,
       y: 0,
     },
-    willDriveCapacity: 23,
+    willDriveDistance: 23,
     carCapacity: 4,
   }),
   new Driver({
@@ -194,7 +192,7 @@ const drivers = [
       x: 0,
       y: 18,
     },
-    willDriveCapacity: 14,
+    willDriveDistance: 14,
     carCapacity: 3,
   }),
   new Driver({
@@ -203,7 +201,7 @@ const drivers = [
       x: 5,
       y: 16,
     },
-    willDriveCapacity: 11,
+    willDriveDistance: 11,
     carCapacity: 4,
   }),
   new Driver({
@@ -212,7 +210,7 @@ const drivers = [
       x: 20,
       y: 4,
     },
-    willDriveCapacity: 11,
+    willDriveDistance: 11,
     carCapacity: 3,
   }),
   new Driver({
@@ -221,7 +219,7 @@ const drivers = [
       x: 3,
       y: 7,
     },
-    willDriveCapacity: 12,
+    willDriveDistance: 12,
     carCapacity: 2,
   }),
   new Driver({
@@ -230,7 +228,7 @@ const drivers = [
       x: 1,
       y: 13,
     },
-    willDriveCapacity: 6,
+    willDriveDistance: 6,
     carCapacity: 3,
   }),
   new Driver({
@@ -239,7 +237,7 @@ const drivers = [
       x: 4,
       y: 16,
     },
-    willDriveCapacity: 23,
+    willDriveDistance: 23,
     carCapacity: 4,
   }),
   new Driver({
@@ -248,7 +246,7 @@ const drivers = [
       x: 12,
       y: 19,
     },
-    willDriveCapacity: 33,
+    willDriveDistance: 33,
     carCapacity: 2,
   }),
   new Driver({
@@ -257,7 +255,7 @@ const drivers = [
       x: 11,
       y: 11,
     },
-    willDriveCapacity: 22,
+    willDriveDistance: 22,
     carCapacity: 8,
   }),
   new Driver({
@@ -266,7 +264,7 @@ const drivers = [
       x: 5,
       y: 7,
     },
-    willDriveCapacity: 29,
+    willDriveDistance: 29,
     carCapacity: 2,
   }),
   new Driver({
@@ -275,38 +273,25 @@ const drivers = [
       x: 3,
       y: 18,
     },
-    willDriveCapacity: 39,
+    willDriveDistance: 39,
     carCapacity: 5,
   }),
 ];
 
 let done = 0;
 
-// const destroyData = async () => {
-//   try {
-//     await Driver.deleteMany();
+export const seedData = async () => {
+  try {
+    await Driver.deleteMany({});
 
-//     console.log("Data destroyed!");
-//     process.exit();
-//   } catch (error) {
-//     console.error(error);
-//     process.exit(1);
-//   }
-// };
-
-function exit() {
-  mongoose.disconnect();
-}
-
-export const seedData = () => {
-  for (let i = 0; i < drivers.length; i++) {
-    drivers[i].save(function (err, result) {
-      done++;
-
-      // Delete this line and the next line
-      // if (done === drivers.length) exit();
-    });
+    for (let i = 0; i < drivers.length; i++) {
+      drivers[i].save(function (err, result) {
+        done++;
+      });
+    }
+  } catch (err) {
+    console.error(err);
   }
 
-  console.log("Mock data is seeded.");
+  console.log("Mock data is seeded from seed script.");
 };
