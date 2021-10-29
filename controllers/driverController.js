@@ -74,7 +74,7 @@ export const getNearestDrivers = async (req, res) => {
         d.carCapacity >= customerGuestCount
     );
 
-    // STEP 4: now iterate through the recent documents and add additional key-value pair, which is the distance to user (because this is important for next step)
+    // STEP 4: now iterate through the latest documents we've got and add additional key-value pair to each document, which is the distance to user (because this is important for next step)
     const eligibleDriversWithDistanceToCustomers = eligibleDrivers.map((d) =>
       Object.assign(
         { distanceToUser: calculateDistance(customerLocation, d.location) },
@@ -87,7 +87,7 @@ export const getNearestDrivers = async (req, res) => {
         message: "No driver found. Sorry, please try again later.",
       });
 
-    // STEP 5: iterate through the recent driver documents you have (after they have passed all criterias and you added additional data like current distance to customers) and pick the driver with the lowest distance between that driver and customer, and send it as JSON document to the client
+    // STEP 5: iterate through the recent driver documents you have (after they have passed all criterias and you added additional data like current distance to customers) and pick the driver with the lowest distance between that driver and customer, and send it as JSON document to the client (pick just one best driver)
     const nearestDriver = findNearestEligibleDriver(
       eligibleDriversWithDistanceToCustomers
     );

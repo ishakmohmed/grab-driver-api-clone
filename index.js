@@ -9,7 +9,7 @@ import connectDb from "./utils/connectDb.js";
 import driverRoutes from "./routes/driverRoutes.js";
 
 // MongoDB database connection
-connectDb();
+await connectDb();
 
 // To recognize incoming request as JSON object
 app.use(express.json());
@@ -19,6 +19,12 @@ seedData();
 
 // Route(s)
 app.use("/api/search/drivers", driverRoutes);
+
+app.get("/", (req, res) => {
+  res.send(
+    "API is running! Please visit the following link to read instructions on how to use this API: https://github.com/ishakmohmed/grab-driver-api-clone"
+  );
+});
 
 // No middleware (such as auth middleware) since this is a simple, public, demo API
 
