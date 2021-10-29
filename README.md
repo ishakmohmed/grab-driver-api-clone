@@ -19,7 +19,7 @@ The above steps will most probably work, but in case you encounter some issues (
 It is recommended to use software to test APIs such as Postman or Insomnia. There are two routes, first is a bonus one I've created which is not part of the requirements (but is super helpful), and the second one which is the main route in this API (and is part of the requirement).
 
 #### Route 1: Get All Drivers
-Access: public
+    Access: public
 
 Description: get all drivers in the database
 
@@ -32,5 +32,6 @@ Full URL: http://localhost:5000/api/search/drivers
 Request body: none, just hit this API endpoint
 
 Output: 
+
 ![Mohmed Ishak](https://user-images.githubusercontent.com/52876913/139466697-56b0b674-26c3-43bc-8887-feb8d4cca839.PNG)
 
