@@ -67,4 +67,5 @@ It is recommended to use software to test APIs such as Postman or Insomnia. Ther
 ```
 ![Mohmed Ishak](https://user-images.githubusercontent.com/52876913/139468660-b8b36169-74b0-4bd0-95b1-17f526c3aeef.PNG)
 
-
+### [5] Internal Implementation of the API (If You're Interested)
+Here's how the API is implemented. First of all, the `req.body` property is checked whether the client sends the right data in right format or not, for instance customerName and customerLocation. If even a portion of data is not included or not within limit, appropriate error messages will be returned. Next, the distance between customer location and destination is calculated. Why? Because each driver has a property called willDriveDistance, so if a customer wants to ride for say 10 units of distance, but the capacity of a driver is only 8, they wouldn't be matched. Next, out of all the drivers in the database, only the drivers who can drive more than the demand of the customer and at the same time whose car can fit it all the customers (because one person might book not necessrily book one seat only, but two, or three, or even more) are stored in a temporary array. At the same time, these drivers' MongoDB document are dynamically added the distance betweeen them and the customer. Finally, the driver who is nearest to customer is returned to consumer of this API in JSON format.
