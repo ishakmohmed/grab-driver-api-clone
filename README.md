@@ -18,7 +18,7 @@ The above steps will most probably work, but in case you encounter some issues (
 ### [4] API Usage
 It is recommended to use software to test APIs such as Postman or Insomnia. There are two routes, first is a bonus one I've created which is not part of the requirements (but is super helpful), and the second one which is the main route in this API (and is part of the requirement).
 
-#### Route 1: Get All Drivers
+#### Route 1: Get All Drivers (Bonus Route, Not Part of Assessment)
     Access: public
     Description: get all drivers in the database
     Route: /api/search/drivers
@@ -29,3 +29,11 @@ It is recommended to use software to test APIs such as Postman or Insomnia. Ther
     
 ![Mohmed Ishak](https://user-images.githubusercontent.com/52876913/139466697-56b0b674-26c3-43bc-8887-feb8d4cca839.PNG)
 
+#### Route 2: Get Nearest Drivers
+Access: public
+Description: get nearest, eligible drivers
+Route: /api/search/drivers
+HTTP method: POST
+Full URL: http://localhost:5000/api/search/drivers
+Request body: 
+Output (like following image, but more data): 
