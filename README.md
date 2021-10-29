@@ -37,7 +37,8 @@ It is recommended to use software to test APIs such as Postman or Insomnia. Ther
     HTTP method: POST
     Full URL: http://localhost:5000/api/search/drivers
     Request body: yes (JSON)
-    Request body template: please copy the code snippet below (copy manually or find the copy button on top right of the snippet with light gray background)
+    Request body template: please copy the code snippet below (copy manually or find the copy button on top
+                           right of the snippet with light gray background)
 ```    
 ```bash
 {
@@ -54,7 +55,7 @@ It is recommended to use software to test APIs such as Postman or Insomnia. Ther
 }
 ```
 ```bash 
-    Validation:
+    Validations:
         - name is a string of 1 to 50 characters
         - customerLocation and customerDestination are x-axis and y-axis based coordinates where each x or y
           point must be a number from 0 to 20 (inclusive) because it is assumed that the imaginary map is a
