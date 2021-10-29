@@ -25,7 +25,7 @@ It is recommended to use software to test APIs such as Postman or Insomnia. Ther
     HTTP method: GET
     Full URL: http://localhost:5000/api/search/drivers
     Request body: none, just hit this API endpoint
-    Output: 
+    Output (like following image, but more data): 
     
 ![Mohmed Ishak](https://user-images.githubusercontent.com/52876913/139466697-56b0b674-26c3-43bc-8887-feb8d4cca839.PNG)
 
