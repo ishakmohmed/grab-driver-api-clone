@@ -37,7 +37,7 @@ It is recommended to use software to test APIs such as Postman or Insomnia. Ther
     HTTP method: POST
     Full URL: http://localhost:5000/api/search/drivers
     Request body: yes (JSON)
-    Request body template:
+    Request body template: please copy the code snippet below (copy manually or find the copy button on top right of the snippet with light gray background)
 ```    
 ```bash
 {
