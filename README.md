@@ -30,10 +30,13 @@ It is recommended to use software to test APIs such as Postman or Insomnia. Ther
 ![Mohmed Ishak](https://user-images.githubusercontent.com/52876913/139466697-56b0b674-26c3-43bc-8887-feb8d4cca839.PNG)
 
 #### Route 2: Get Nearest Drivers
-Access: public
-Description: get nearest, eligible drivers
-Route: /api/search/drivers
-HTTP method: POST
-Full URL: http://localhost:5000/api/search/drivers
-Request body: 
-Output (like following image, but more data): 
+    Access: public
+    Description: get nearest, eligible drivers
+    Route: /api/search/drivers
+    HTTP method: POST
+    Full URL: http://localhost:5000/api/search/drivers
+    Request body (copy code from snippet below and play around with values):
+    
+    
+    
+    Output (like following image, but more data): 
