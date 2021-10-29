@@ -56,7 +56,14 @@ It is recommended to use software to test APIs such as Postman or Insomnia. Ther
 ```bash 
     Validation:
         - name is a string of 1 to 50 characters
-        - customerLocation and customerDestination are x-axis and y-axis based coordinates where each x or y point must be a number from 0 to 20 (inclusive) because it is assumed that the imaginary map is a 20 x 20 grid
-        - customerGuestCount should be a number from 2 till 7.  This variable means the number of people who wants to get in the car (excluding driver). So, this includes you and your friends/family, not the driver. For this API, it is assumed that the biggest car can fit in 8 people at a time including the driver.
-    Output (like following image, but more data): 
+        - customerLocation and customerDestination are x-axis and y-axis based coordinates where each x or y
+          point must be a number from 0 to 20 (inclusive) because it is assumed that the imaginary map is a
+          20 x 20 grid
+        - customerGuestCount should be a number from 2 till 7.  This variable means the number of people who
+          wants to get in the car (excluding driver). So, this includes you and your friends/family, not the
+          driver. For this API, it is assumed that the biggest car can fit in 8 people at a time including the driver.
+    Output (like following image but varies based on input): 
 ```
+![Mohmed Ishak](https://user-images.githubusercontent.com/52876913/139468660-b8b36169-74b0-4bd0-95b1-17f526c3aeef.PNG)
+
+
