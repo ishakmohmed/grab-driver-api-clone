@@ -38,6 +38,6 @@ It is recommended to use software to test APIs such as Postman or Insomnia. Ther
     Full URL: http://localhost:5000/api/search/drivers
     Request body (copy code from snippet below and play around with values):
 ```    
-    
-    
+```bash 
     Output (like following image, but more data): 
+```
