@@ -36,8 +36,23 @@ It is recommended to use software to test APIs such as Postman or Insomnia. Ther
     Route: /api/search/drivers
     HTTP method: POST
     Full URL: http://localhost:5000/api/search/drivers
-    Request body (copy code from snippet below and play around with values):
+    Request body: yes (JSON)
+    Request body template:
 ```    
+```bash
+{
+  "customerName": "Mohmed Ishak",
+  "customerLocation": {
+    "x": 8,
+    "y": 4
+  },
+  "customerDestination": {
+  "x": 4,
+  "y": 5
+  },
+  "customerGuestCount": 2
+}
+```
 ```bash 
     Output (like following image, but more data): 
 ```
